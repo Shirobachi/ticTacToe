@@ -1,10 +1,34 @@
-<script setup>
-	import Welcome from "./components/Welcome.vue";
-</script>
-
 <template>
+	<nav class="mr-8 ml-8">
+
+  <ul>
+    <li><strong><router-link to="/">⏱️Time is ticking!</router-link></strong></li>
+  </ul>
+		<ul>
+			<li v-for="route in $router.options.routes" :key="route.path" >
+				<router-link :to="route.path">
+					{{ route.name }}
+				</router-link>
+			</li>
+		</ul>
+	</nav>
+
   <main class="container">
-		<Welcome msg="Hello in time is ticking game!" />
+		<router-view></router-view>
+
+		<!-- footer -->
+		<div class="flex justify-center w-100">
+			<p class="text-center">Project made
+				<div class="hidden md:block">in 
+					<a href="https://github.com/shirobachi/timeisticking">
+						<img class="md:inline" src="https://wakatime.com/badge/user/b74ba3c5-2883-43ca-9833-799f8a50840a/project/ded41332-e8a2-4fe8-9c63-cfa6d642643f.svg" alt="wakatime">
+					</a>
+				</div>
+				<p class="ml-1">
+					with 🫀 by <a href="https://github.com/shirobachi">Shirobachi</a>
+				</p>
+			</p>
+		</div>
 	</main>
 </template>
 
