@@ -1,5 +1,0 @@
-<template>
-
-	ASDASDAS
-
-</template>
