@@ -2,7 +2,7 @@
 	<nav class="mr-8 ml-8">
 
   <ul>
-    <li><strong><router-link to="/">⏱️Time is ticking!</router-link></strong></li>
+    <li><strong><router-link to="/">⏱️ <u>T</u>ime <u>i</u>s <u>t</u>icking!</router-link></strong></li>
   </ul>
 		<ul>
 			<li v-for="route in $router.options.routes" :key="route.path" >
@@ -19,7 +19,7 @@
 		<!-- footer -->
 		<div class="flex justify-center w-100">
 			<p class="text-center">Project made
-				<div class="hidden md:block">in 
+				<div class="hidden md:block ml-1">in 
 					<a href="https://github.com/shirobachi/timeisticking">
 						<img class="md:inline" src="https://wakatime.com/badge/user/b74ba3c5-2883-43ca-9833-799f8a50840a/project/ded41332-e8a2-4fe8-9c63-cfa6d642643f.svg" alt="wakatime">
 					</a>
