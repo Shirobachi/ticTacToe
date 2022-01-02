@@ -33,6 +33,5 @@
 </template>
 
 <style>
-	@import url(https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css);
 	@import url(https://unpkg.com/@picocss/pico@latest/css/pico.min.css);
 </style>
