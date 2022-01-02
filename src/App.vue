@@ -16,17 +16,18 @@
   <main class="container">
 		<router-view></router-view>
 
+		<hr class="mt-5 mb-1">
+
 		<!-- footer -->
 		<div class="flex justify-center w-100">
-			<p class="text-center">Project made
-				<div class="hidden md:block ml-1">in 
-					<a href="https://github.com/shirobachi/timeisticking">
-						<img class="md:inline" src="https://wakatime.com/badge/user/b74ba3c5-2883-43ca-9833-799f8a50840a/project/ded41332-e8a2-4fe8-9c63-cfa6d642643f.svg" alt="wakatime">
-					</a>
-				</div>
-				<p class="ml-1">
-					with 🫀 by <a href="https://github.com/shirobachi">Shirobachi</a>
-				</p>
+			Project made
+			<div class="hidden md:block ml-1">in 
+				<a href="https://github.com/shirobachi/timeisticking">
+					<img class="md:inline" src="https://wakatime.com/badge/user/b74ba3c5-2883-43ca-9833-799f8a50840a/project/ded41332-e8a2-4fe8-9c63-cfa6d642643f.svg" alt="wakatime">
+				</a>
+			</div>
+			<p class="ml-1">
+				with 🫀 by <a href="https://github.com/shirobachi">Shirobachi</a>
 			</p>
 		</div>
 	</main>
