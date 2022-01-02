@@ -11,12 +11,10 @@ const setCode = (e) => {
 </script>
 
 <template>
-  <div>
-    <center>
-      <h1>Home</h1>
-      <PreGame v-if="gameCode == undefined" @sendCode="setCode"/>
-			<Game v-if="gameCode != undefined" />
+	<div class="m-auto">
+		<h1 class="text-center">Home (check code 1111)</h1>
+		<PreGame v-if="gameCode == undefined" @sendCode="setCode"/>
+		<Game :code="gameCode" v-if="gameCode != undefined" />
 
-    </center>
-  </div>
+	</div>
 </template>

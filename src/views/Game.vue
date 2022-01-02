@@ -1,21 +1,47 @@
 <script setup>
+import axios from "axios";
+import { ref } from "vue";
+
+// props
+const props = defineProps({
+  code: String,
+});
+
+// const code = ref()
+
+// images
+
+// code = "#@$"
 
 const img = [
   new URL("../img/0.png", import.meta.url).href,
   new URL("../img/1.png", import.meta.url).href,
 ];
 
+// const url = "https://api.hryszko.dev/tictactoe" + code.value;
 
-//code to copy
-	// timer like chess
+// axios(let).then(function (response) {
+// 	emit("sendCode", gameCode.value);
+// });
 
+const refresh = function () {
+  let url = "https://api.hryszko.dev/tictactoe/" + props.code;
+  alert(url);
+};
 
+// refresh()
 </script>
 
-
 <template>
-	<main class="container">
+  <main class="container">
 
+    <div class="flex justify-around">
+			<mark title="Here gonna be timer, one day...">00:05</mark>
+			<kbd title="Believe or not, but this is game code xD">
+				Game code: {{ code }}
+			</kbd>
+
+		</div>
 
     <div class="text-4xl flex justify-center">
       <div>
