@@ -58,6 +58,20 @@
 		else if(props.playerCode == game.value.player){
 			// check if field empty
 
+			//show made turn
+			game.value.board[~~(x/3)][x%3] = props.playerCode;
+
+			axios("https://api.hryszko.dev/tictactoe/" + props.code)
+				.then(function (response) {
+					// check player
+					if(response.data.player == 1 - props.playerCode){
+						toast.warning("Now is not your turn!", {
+								position: "bottom-right",
+								timeout: 1500
+						});
+						refresh()
+					}
+					else{
 						let url = "https://api.hryszko.dev/tictactoe/" + props.code + "/" + x;
 						axios.put(url).catch(function (e) {
 							toast.warning("This field is already occupied!", {
