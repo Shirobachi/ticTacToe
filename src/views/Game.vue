@@ -128,12 +128,8 @@
 
 <template>
   <main class="w-screen">
-
-		{{game}}|
-		{{props.playerCode}}
-
 		<div v-if="game!=undefined">
-			<div class="flex justify-center">
+			<div class="flex justify-center text-xl">
 				Game code:
 				<span class="ml-1 font-bold underline">
 					{{props.code}}
