@@ -3,8 +3,24 @@
 
 	const mobileOpen = ref(false)
 
-	// random set color
-	document.documentElement.style.setProperty('--primary-color', "#" + Math.floor(Math.random() * 16777215).toString(16))
+	var brightness = -1
+	var color = -1
+	var r
+	var g
+	var b
+
+	while(brightness < 150 || brightness > 200){
+		r = Math.floor(Math.random() * 256)
+		g = Math.floor(Math.random() * 256)
+		b = Math.floor(Math.random() * 256)
+
+		// check brightness
+		var brightness = (r * 299 + g * 587 + b * 114) / 1000;
+		console.log(brightness)
+		color = '#' + "0".repeat(2 - r.toString(16).length) + r.toString(16) + "0".repeat(2 - g.toString(16).length) + g.toString(16) + "0".repeat(2 - b.toString(16).length) + b.toString(16)
+		}
+
+document.documentElement.style.setProperty('--primary-color', color)
 </script>
 
 <template>
