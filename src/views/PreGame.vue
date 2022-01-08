@@ -2,12 +2,27 @@
 import { computed, ref } from "vue";
 import axios from "axios";
 
+import InputNumber from "./simple/InputNumber.vue";
+import Button from "./simple/Button.vue";
+import { useToast } from "vue-toastification";
+
 // variables
+const toast = useToast();
 const gameCode = ref();
-const gameStatus = ref();
+const gameStatus = ref(-1);
+
+const modalShow = computed(() => {
+  return gameStatus.value != -1;
+});
+
+const modalInfo = computed(() => {
+  if (gameStatus.value == 404) return "Game not found!";
+  else if (gameStatus.value == 422) return "Game code is invalid!";
+  else return "";
+});
 
 // set emitter(s)
-const emit = defineEmits(["sendCode"]);
+const emit = defineEmits(["sendInfo"]);
 
 // functions
 const isMakingNewGame = computed(() => {
@@ -17,58 +32,57 @@ const isMakingNewGame = computed(() => {
 
 function join() {
   let url = "https://api.hryszko.dev/tictactoe/" + gameCode.value;
-
   axios(url)
     .then(function (response) {
-			emit("sendCode", gameCode.value);
-		})
+      emit("sendInfo", {
+        code: gameCode.value,
+        playerCode: 0,
+      });
+    })
     .catch(function (e) {
-			gameStatus.value = e.response.status;
+      gameStatus.value = e.response.status;
+
+      toast.error(modalInfo.value, {
+        position: "bottom-right",
+      });
+    });
+}
+
+function makeGame(){
+	let url = "https://api.hryszko.dev/tictactoe/";
+	axios.post(url).then(function (response) {
+		emit("sendInfo", {
+			code: response.data.code,
+			playerCode: 1,
+		});
+	}).catch(function (e) {
+		// if status is 400
+		if(e.response.status == 400)
+			toast.error("No more game codes, game cannot be made!", {
+				position: "bottom-right",
+			});
+		else
+			toast.error("Something went wrong!", {
+				position: "bottom-right",
+			});
+
 	});
 }
 </script>
 
-<template v-if="gameCode.value == undefined">
-  <main class="container">
-    <input
-      type="number"
-      placeholder="Type game code to join to your friend!"
-      min="0"
-      max="9999"
-      v-model="gameCode"
-    />
-    <div class="flex">
-      <button class="mx-1" :disabled="!isMakingNewGame">Make new game</button>
-      <button class="mx-1" @click="join" :disabled="isMakingNewGame">
-        Join to the game
-      </button>
+<template>
+  <div class="flex w-full items-center justify-center">
+    <div class="flex w-1/2 flex-col items-center justify-center m-2">
+      <InputNumber
+        v-model="gameCode"
+        :min="1000"
+        :max="9999"
+        placeholder="Type game code to join to your friend!"
+      />
+      <div class="flex w-full justify-evenly mt-2">
+        <Button @click="makeGame" :disabled="!isMakingNewGame">Make new game</Button>
+        <Button @click="join" :disabled="isMakingNewGame">Join to the game</Button>
+      </div>
     </div>
-  </main>
-
-	<dialog open v-if="gameStatus==404">
-		<article>
-			<h3>Game not exist!</h3>
-			<p>
-				We tried to locate the game, but it doesn't exist.
-				<br />
-				Ask your friend repeat code for you or create new game.
-			</p>
-			<footer>
-				<button @click="gameStatus=-1">Try again!</button>
-			</footer>
-		</article>
-	</dialog>
-
-	<dialog open v-if="gameStatus==422">
-		<article>
-			<h3>Wrong code!</h3>
-			<p>
-				Code should has 4 digits, your hasn't 😥
-			</p>
-			<footer>
-				<button @click="gameStatus=-1">Try again!</button>
-			</footer>
-		</article>
-	</dialog>
-
+  </div>
 </template>
