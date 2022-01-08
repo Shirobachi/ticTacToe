@@ -1,6 +1,6 @@
 <script setup>
 	import axios from "axios";
-	import { ref } from "vue";
+	import { computed, ref } from "vue";
   import { useToast } from "vue-toastification";
 	import Modal from "./simple/Modal.vue";
 
@@ -27,6 +27,10 @@
 	];
 
 	const refresh = function () {
+		// if game finish stop refreshing
+		if(game.value.winner != null)
+			clearInterval(refresher);
+
 		let url = "https://api.hryszko.dev/tictactoe/" + props.code;
 		console.log(url)
 		axios(url)
@@ -41,22 +45,29 @@
 	};
 	refresh()
 	// add interval to var and close when finish game
-	setInterval(refresh, 3000);
+	var refresher = setInterval(refresh, 3000);
 
 	// init toast and send toast about loading game
 	const toast = useToast();
 
 	const makeAMove = function(x){
-		if(props.playerCode == game.value.player){
-			// check if field empty
-			let url = "https://api.hryszko.dev/tictactoe/" + props.code + "/" + x;
-
-			axios.put(url).catch(function (e) {
-				toast.warning("This field is already occupied!", {
-					position: "bottom-right",
-					timeout: 1500
-				});
+		if(game.value.winner != null)
+			toast.warning("Game is finished " + modalData.value.title.toLowerCase(), {
+				position: "bottom-right",
 			});
+		else if(props.playerCode == game.value.player){
+			// check if field empty
+
+						let url = "https://api.hryszko.dev/tictactoe/" + props.code + "/" + x;
+						axios.put(url).catch(function (e) {
+							toast.warning("This field is already occupied!", {
+								position: "bottom-right",
+								timeout: 1500
+							});
+						});
+					}
+				})
+
 		}
 		else{
 			// not they turn
@@ -67,6 +78,7 @@
 		}
 	}
 
+	// show starting toast
 	if(props.playerCode == 1)
 		toast.success("Tell your friend that game code is " + props.code, {
 			position: "bottom-right",
@@ -77,6 +89,27 @@
 				position: "bottom-right",
 				timeout: 1500
 		});
+
+	const modalData = computed(function(){
+		if(game.value.winner == -1) 
+			return {
+				"title": "Game finished with draw",
+				"message": "It's a draw!",
+				"button": "Close"
+			}
+		else if(game.value.winner == props.playerCode)
+			return {
+				"title": "You won!",
+				"message": "Congratulations!",
+				"button": "Close"
+			}
+		else
+			return {
+				"title": "You lost!",
+				"message": "You lost :(",
+				"button": "Close"
+			}
+	});
 </script>
 
 <template>
@@ -127,6 +160,9 @@
 				</div>
 			</div>
 		</div>
+
+	<Modal :data="modalData" :open="game.winner != null"/>
+
   </main>
 
 </template>
