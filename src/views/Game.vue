@@ -124,14 +124,28 @@
 				"button": "Close"
 			}
 	});
+
+	// function copyCode
+	const copyCode = function(){
+		navigator.clipboard.writeText(props.code);
+		toast.success("Code copied to clipboard", {
+			position: "bottom-right",
+			timeout: 1500
+		});
+	}
 </script>
 
 <template>
+
+
+
   <main class="w-screen">
 		<div v-if="game!=undefined">
 			<div class="flex justify-center text-xl">
 				Game code:
-				<span class="ml-1 font-bold underline">
+				<!-- click to copy element -->
+				<!-- select text on hover -->
+				<span @click="copyCode" class="cursor-pointer ml-1 font-bold underline mb-2">
 					{{props.code}}
 				</span>
 			</div>
