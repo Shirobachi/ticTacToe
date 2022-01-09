@@ -94,7 +94,7 @@
 
 	// show starting toast
 	if(props.playerCode == 1)
-		toast.success("Tell your friend that game code is " + props.code, {
+		toast.success("Tell your friend that game code is " + props.code + ', your turn!', {
 			position: "bottom-right",
 			timeout: 5000
 		});
@@ -130,9 +130,19 @@
 		navigator.clipboard.writeText(props.code);
 		toast.success("Code copied to clipboard", {
 			position: "bottom-right",
-			timeout: 1500
+			timeout: 2000
 		});
 	}
+
+	// run func in 5 secs
+	setTimeout(function(){
+		// if not on board are this player mark and now is they turn 
+		if(! [].concat(...game.value.board).includes(props.playerCode) && props.playerCode == game.value.player)
+			toast.info("Your friend is waiting for you, make a move!", {
+				position: "bottom-right",
+				timeout: 3000
+			});
+	}, (1-props.playerCode+1)*10*100); //10000 for player 1 and 20000 for player 2
 </script>
 
 <template>
