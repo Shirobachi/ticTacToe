@@ -142,7 +142,7 @@
 				position: "bottom-right",
 				timeout: 3000
 			});
-	}, (1-props.playerCode+1)*10*100); //10000 for player 1 and 20000 for player 2
+	}, (1-props.playerCode+1)*10*1000); //10000 for player 1 and 20000 for player 2
 </script>
 
 <template>
