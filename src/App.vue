@@ -2,25 +2,13 @@
 	import {ref} from "vue";
 
 	const mobileOpen = ref(false)
+	const color = ref("#ff0000")
 
-	var brightness = -1
-	var color = -1
-	var r
-	var g
-	var b
+	// random color
+	const colors = ['55d423', 'fe8260', 'b078f7', '47cf53', 'd480fc', 'f39f4b', '62ca5b', 'd28677', 'cfb976', 'd684a5', 'fac62d', '66b783', 'e890e9', '45c0cf', 'd9bc0e', 'bb88ea', 'db9343', 'f869cd', '53dc71', 'e1ba1d', '9ec02d', 'edb531', 'f08a2c', '829be0', '5fc869', '53ced1', '55d423', 'fe8260', 'b078f7' ]
+	color.value = colors[Math.floor(Math.random() * colors.length)]
 
-	while(brightness < 150 || brightness > 200){
-		r = Math.floor(Math.random() * 256)
-		g = Math.floor(Math.random() * 256)
-		b = Math.floor(Math.random() * 256)
-
-		// check brightness
-		var brightness = (r * 299 + g * 587 + b * 114) / 1000;
-		console.log(brightness)
-		color = '#' + "0".repeat(2 - r.toString(16).length) + r.toString(16) + "0".repeat(2 - g.toString(16).length) + g.toString(16) + "0".repeat(2 - b.toString(16).length) + b.toString(16)
-		}
-
-document.documentElement.style.setProperty('--primary-color', color)
+	document.documentElement.style.setProperty('--primary-color', '#' + color.value)
 </script>
 
 <template>
