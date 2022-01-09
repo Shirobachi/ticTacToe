@@ -11,7 +11,7 @@
 			<span>
 				This project use API wrote in python's framework fastapi, with units tests wrote in pytest as backend.
 				<br>
-				Frontend is written in Vue.js with some components and some custom components, also tailwind is on the board 💚.
+				Frontend is written in Vue.js with some components and some custom components, also tailwind is on the board 💚
 			</span>
 		</div>
 	</div>
