@@ -139,9 +139,9 @@
 		if(! [].concat(...game.value.board).includes(props.playerCode) && props.playerCode == game.value.player)
 			toast.info("Your friend is waiting for you, make a move!", {
 				position: "bottom-right",
-				timeout: 3000
+				timeout: 5000
 			});
-	}, (1-props.playerCode+1)*10*1000); //10000 for player 1 and 20000 for player 2
+	}, 6000); //10000 for player 1 and 20000 for player 2
 </script>
 
 <template>
