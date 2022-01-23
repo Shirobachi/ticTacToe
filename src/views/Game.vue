@@ -56,10 +56,9 @@
 				position: "bottom-right",
 			});
 		else if(props.playerCode == game.value.player){
-			// check if field empty
-
-			//show made turn
-			game.value.board[~~(x/3)][x%3] = props.playerCode;
+			//show made turn if not occupied
+			if(game.value.board[~~(x/3)][x%3] == -1)
+				game.value.board[~~(x/3)][x%3] = props.playerCode;
 
 			axios("https://api.hryszko.dev/tictactoe/" + props.code)
 				.then(function (response) {
