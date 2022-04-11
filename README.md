@@ -1,18 +1,33 @@
-# timeIsTicking
-This is project called Tic Tac Toe
+<p align="center">
+	<img width="600" src="README/logo.png" alt="Tic-Tac-Toe" />
+	<hr>
+</p>
 
-## Tic Tac Toe
-TicTacToe is a game for two players. At the begging I wrote API for different project, but since I wanted write something amazing I decide to expand API usage to little thing. Like you it went just amazing (If you think different just don't tell me this lied 😛)
+![Frontend status](https://img.shields.io/website?down_color=red&down_message=down&label=Frontend&up_color=green&up_message=up&url=https%3A%2F%2Ftictactoe.hryszko.dev)
+![Backend status](https://img.shields.io/website?down_color=red&down_message=down&label=Backend&up_color=green&up_message=up&url=https%3A%2F%2Fapi.hryszko.dev%2Fdocs)
+![License: MIT](https://img.shields.io/badge/license-MIT-green)
+![GitHub top language](https://img.shields.io/github/languages/top/shirobachi/tictactoe)
 
-## Usage 
-- Own API wrote in fastapi framework
-- Vue.js3
-- TailwindCSS
-- Some components from web (you will find in the comments links to them)
+TicTacToe is a simple, yet fun, game of Tic-Tac-Toe. 
 
-## Screenshots
-![Screenshots did not load ;/](https://raw.githubusercontent.com/Shirobachi/ticTacToe/main/screenshots/2022-01-09_16-48_1.png)
-![](https://raw.githubusercontent.com/Shirobachi/ticTacToe/main/screenshots/2022-01-09_16-48.png)
-![](https://raw.githubusercontent.com/Shirobachi/ticTacToe/main/screenshots/2022-01-09_16-47_2.png)
-![](https://raw.githubusercontent.com/Shirobachi/ticTacToe/main/screenshots/2022-01-09_16-47_1.png)
-![](https://raw.githubusercontent.com/Shirobachi/ticTacToe/main/screenshots/2022-01-09_16-47.png)
+Frontend wrote in Vue.js with some plugins like router or toastification. Backend is written in fastAPI with some plugins like swagger.
+> 🚀 Backend is available in repo called [api.hryszko.dev](https://github.com/Shirobachi/api.hryszko.dev/).
+
+During writing this project I used learn a lot of new technologies and libraries. Some of them are: [fastAPI](https://fastapi.tiangolo.com/), [JWT](https://jwt.io/), [mongoDB](https://www.mongodb.com/), [GH action](https://github.com/features/actions), [docker](https://www.docker.com/), [vue.js](https://vuejs.org/), [router](https://router.vuejs.org/), [toastification](https://vue-toastification.maronato.dev/), [swagger](https://swagger.io/) and many others.
+
+> BTW. you can play right now on [tictactoe.hryszko.dev](https://tictactoe.hryszko.dev/)
+
+<img width="600" src="README/mockup.png" alt="Tic-Tac-Toe" />
+
+
+# Installation (frontend) 🏃
+1. Clone the repo
+2. Run npm install
+3. Run npm run dev
+
+
+# Contribution ✨
+If you want to contribute, you are more than welcome to do so. You can create a pull request or open an issue. Don't forget use emoji to express your opinion 😁
+
+# License 📝
+This project is licensed under the [MIT](https://choosealicense.com/licenses/mit/) license.
